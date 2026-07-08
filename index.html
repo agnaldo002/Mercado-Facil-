@@ -2,18 +2,21 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <title>Mercado Fácil</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
 
 body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   padding: 8px;
   color: #333;
+  touch-action: manipulation;
 }
 
 .container { max-width: 1200px; margin: 0 auto; }
@@ -44,10 +47,11 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 10px rgba(102,126,234,0.4);
+  box-shadow: 0 3px 10px rgba(102,126,234,0.4);  -webkit-appearance: none;
 }
 
-.menu-btn:hover { transform: scale(1.05); }
+.menu-btn:active { transform: scale(0.95); }
+
 .menu-overlay {
   display: none;
   position: fixed;
@@ -70,6 +74,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   padding: 15px;
   box-shadow: -5px 0 20px rgba(0,0,0,0.3);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .menu-panel.active { right: 0; }
@@ -86,18 +91,19 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 12px;
+  padding: 12px 12px;
   margin-bottom: 6px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 0.85em;
+  font-weight: bold;  font-size: 0.9em;
   width: 100%;
   text-align: left;
   transition: all 0.2s;
+  -webkit-appearance: none;
 }
-.menu-item:hover { transform: translateX(4px); }
+
+.menu-item:active { transform: scale(0.98); opacity: 0.9; }
 
 .menu-item.green { background: #e8f5e9; color: #2e7d32; }
 .menu-item.blue { background: #e3f2fd; color: #1565c0; }
@@ -121,6 +127,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   border-radius: 50%;
   font-size: 0.9em;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .products-grid {
@@ -138,14 +145,14 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   position: relative;
   padding: 6px 8px;
 }
-
 .product-card.completed {
   background: linear-gradient(135deg, #e8f5e9, #fff);
   border-left: 3px solid #4caf50;
 }
 
 .delete-btn-small {
-  position: absolute;  top: 6px;
+  position: absolute;
+  top: 6px;
   right: 6px;
   background: #f44336;
   color: white;
@@ -161,11 +168,8 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 3px rgba(244,67,54,0.4);
-  transition: all 0.2s;
-  line-height: 1;
+  -webkit-appearance: none;
 }
-
-.delete-btn-small:hover { background: #d32f2f; transform: scale(1.1); }
 
 .product-header {
   display: flex;
@@ -190,11 +194,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   position: relative;
   border: 1px solid #e0e0e0;
 }
-
-.product-image-small:hover { border-color: #667eea; }
-
 .product-image-small img {
-  width: 100%;  height: 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -224,10 +226,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   flex: 1;
   outline: none;
   min-width: 0;
-  transition: all 0.3s;
 }
-
-.product-name:focus { border-bottom-color: #667eea; }
 
 .product-name.highlighted {
   font-weight: bold;
@@ -243,15 +242,13 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   flex-direction: column;
   gap: 4px;
 }
-.price-input {
-  width: 100%;
+
+.price-input {  width: 100%;
   padding: 5px 8px;
   border: 1.5px solid #ddd;
   border-radius: 6px;
   font-size: 0.8em;
 }
-
-.price-input:focus { border-color: #667eea; outline: none; }
 
 .compact-row {
   display: flex;
@@ -283,22 +280,19 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-appearance: none;
 }
-
-.qty-btn:hover { transform: scale(1.1); }
 
 .qty-input {
   width: 35px;
   min-width: 35px;
   text-align: center;
   padding: 3px;
-  border: 1.5px solid #ddd;  border-radius: 5px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
   font-size: 0.85em;
   font-weight: bold;
 }
-
-.qty-input:focus { border-color: #667eea; outline: none; }
-
 .unit-label {
   font-size: 0.7em;
   color: #666;
@@ -326,9 +320,8 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   font-weight: bold;
   font-size: 0.75em;
   white-space: nowrap;
+  -webkit-appearance: none;
 }
-
-.add-small-btn:hover { transform: scale(1.05); }
 
 .summary {
   background: white;
@@ -341,14 +334,14 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 6px;}
+  gap: 6px;
+}
 
 .summary-box {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   padding: 6px 12px;
-  border-radius: 8px;
-  min-width: 80px;
+  border-radius: 8px;  min-width: 80px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(102,126,234,0.3);
 }
@@ -388,15 +381,16 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   width: 100%;
   max-height: 80vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.modal h3 {  color: #667eea;
+.modal h3 {
+  color: #667eea;
   margin-bottom: 15px;
   text-align: center;
 }
 
-.modal-list-item {
-  display: flex;
+.modal-list-item {  display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 12px;
@@ -404,10 +398,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   background: #f5f7fa;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
 }
-
-.modal-list-item:hover { background: #e8eaf6; }
 
 .modal-list-item .list-name { font-weight: bold; font-size: 0.9em; }
 .modal-list-item .list-info { font-size: 0.7em; color: #888; }
@@ -424,6 +415,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
+  -webkit-appearance: none;
 }
 
 .btn-load { background: #e3f2fd; color: #1565c0; }
@@ -432,20 +424,22 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
 
 .modal-close {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-top: 10px;
   background: #f44336;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;}
+  font-weight: bold;
+  font-size: 0.95em;
+  -webkit-appearance: none;
+}
 
 #captureArea {
   position: fixed;
   left: -9999px;
-  top: 0;
-  width: 360px;
+  top: 0;  width: 360px;
   background: white;
   padding: 15px;
   font-family: 'Segoe UI', sans-serif;
@@ -488,13 +482,13 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   margin-top: 10px;
   padding-top: 10px;
   border-top: 2px solid #667eea;
-  text-align: right;  font-size: 1.1em;
+  text-align: right;
+  font-size: 1.1em;
   font-weight: bold;
   color: #667eea;
 }
 
-#captureArea .cap-footer {
-  text-align: center;
+#captureArea .cap-footer {  text-align: center;
   margin-top: 10px;
   font-size: 0.7em;
   color: #999;
@@ -511,7 +505,7 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
 <body>
 <div class="container">
   <header>
-    <h1 id="listTitle"> Mercado Fácil</h1>
+    <h1 id="listTitle">🛒 Mercado Fácil</h1>
     <button class="menu-btn" onclick="toggleMenu()">☰</button>
   </header>
 
@@ -533,18 +527,18 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
 
 <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 <div class="menu-panel" id="menuPanel">
-  <button class="menu-close" onclick="toggleMenu()"></button>
+  <button class="menu-close" onclick="toggleMenu()">✕</button>
   <h3>☰ Menu</h3>
   <button class="menu-item green" onclick="createNewList()">📋 Criar Nova Lista</button>
-  <button class="menu-item indigo" onclick="showLists()"> Mostrar Listas</button>
-  <button class="menu-item orange" onclick="editCurrentList()">✏️ Editar Lista</button>  <button class="menu-item red" onclick="deleteCurrentList()">🗑️ Excluir Lista Atual</button>
+  <button class="menu-item indigo" onclick="showLists()">📂 Mostrar Listas</button>
+  <button class="menu-item orange" onclick="editCurrentList()">✏️ Editar Lista</button>
+  <button class="menu-item red" onclick="deleteCurrentList()">🗑️ Excluir Lista Atual</button>
   <button class="menu-item blue" onclick="loadSample()">📦 Carregar Exemplo</button>
   <button class="menu-item cyan" onclick="saveCurrentListManual()">💾 Salvar Lista</button>
   <button class="menu-item cyan" onclick="shareList()">📤 Compartilhar Lista</button>
   <button class="menu-item pink" onclick="showSaveAs()">💾 Salvar Como...</button>
-  <button class="menu-item purple" onclick="clearPrices()">💲 Limpar Preços</button>
-  <button class="menu-item teal" onclick="clearNames()">🏷️ Limpar Nomes</button>
-  <button class="menu-item blue" onclick="clearQuantities()"> Limpar Quantidades</button>
+  <button class="menu-item purple" onclick="clearPrices()"> Limpar Preços</button>  <button class="menu-item teal" onclick="clearNames()">️ Limpar Nomes</button>
+  <button class="menu-item blue" onclick="clearQuantities()">🔢 Limpar Quantidades</button>
   <button class="menu-item red" onclick="clearAll()">🗑️ Limpar Tudo</button>
 </div>
 
@@ -568,9 +562,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
 <div class="modal-overlay" id="shareModal">
   <div class="modal">
     <h3>📤 Compartilhar Lista</h3>
-    <button class="menu-item blue" onclick="shareAsImage()" style="width:100%;justify-content:center;">🖼️ Compartilhar como Imagem</button>
+    <button class="menu-item blue" onclick="shareAsImage()" style="width:100%;justify-content:center;">️ Compartilhar como Imagem</button>
     <button class="menu-item red" onclick="shareAsPDF()" style="width:100%;justify-content:center;">📄 Compartilhar como PDF</button>
-    <button class="menu-item green" onclick="shareAsText()" style="width:100%;justify-content:center;"> Compartilhar como Texto</button>
+    <button class="menu-item green" onclick="shareAsText()" style="width:100%;justify-content:center;">📝 Compartilhar como Texto</button>
     <button class="modal-close" onclick="closeShareModal()">Cancelar</button>
   </div>
 </div>
@@ -583,16 +577,16 @@ let products = [];
 let currentUploadId = null;
 let currentListName = 'Lista de Compras';
 
-const emojis = ['🍎','🍌','🥛','🍞','🧀','🥩','🥚','🍅','🥕','🍚','','🍫','🧻','','☕','🍝','🥫','🍺','🍇','🥦','','🍗','🐟','','🥬','🍊','','🍑','🥑',''];
+const emojis = ['🍎','🍌','','🍞','🧀','🥩','🥚','🍅','🥕','🍚','🧃','🍫','🧻','🧼','☕','🍝','🥫','🍺','🍇','🥦','🫘','🍗','🐟','🧅','🥬','🍊','🍋','🍑','🥑','🌽'];
 
 function toggleMenu() {
-  document.getElementById('menuOverlay').classList.toggle('active');  document.getElementById('menuPanel').classList.toggle('active');
+  document.getElementById('menuOverlay').classList.toggle('active');
+  document.getElementById('menuPanel').classList.toggle('active');
 }
 
 function getAllLists() {
   try { return JSON.parse(localStorage.getItem('marketLists') || '{}'); } catch { return {}; }
 }
-
 function saveAllLists(lists) { localStorage.setItem('marketLists', JSON.stringify(lists)); }
 
 function saveCurrentList() {
@@ -635,13 +629,13 @@ function showLists() {
         </div>
         <div class="modal-list-actions">
           <button class="btn-load" onclick="loadList('${name.replace(/'/g, "\\'")}')" title="Carregar">📂</button>
-          <button class="btn-edit" onclick="renameList('${name.replace(/'/g, "\\'")}')" title="Renomear">✏️</button>          <button class="btn-del" onclick="deleteList('${name.replace(/'/g, "\\'")}')" title="Excluir">🗑️</button>
+          <button class="btn-edit" onclick="renameList('${name.replace(/'/g, "\\'")}')" title="Renomear">✏️</button>
+          <button class="btn-del" onclick="deleteList('${name.replace(/'/g, "\\'")}')" title="Excluir">🗑️</button>
         </div>
       </div>
     `).join('');
   }
-  document.getElementById('listsModal').classList.add('active');
-}
+  document.getElementById('listsModal').classList.add('active');}
 
 function closeListsModal() { document.getElementById('listsModal').classList.remove('active'); }
 
@@ -684,13 +678,13 @@ function deleteList(name) {
       render();
     }
     showLists();
-  }}
+  }
+}
 
 function editCurrentList() {
   const newName = prompt('Editar nome da lista:', currentListName);
   if(newName && newName.trim()) {
-    const lists = getAllLists();
-    if(lists[currentListName]) {
+    const lists = getAllLists();    if(lists[currentListName]) {
       lists[newName.trim()] = lists[currentListName];
       delete lists[currentListName];
       saveAllLists(lists);
@@ -733,13 +727,13 @@ function addProductAfter(id) {
     id: Date.now() + Math.random(),
     name: '',
     price: 0,
-    quantity: 1,    image: '',
+    quantity: 1,
+    image: '',
     emoji: emojis[Math.floor(Math.random() * emojis.length)]
   };
   products.splice(index + 1, 0, newProduct);
   render();
 }
-
 function deleteProduct(id) {
   products = products.filter(p => p.id !== id);
   render();
@@ -782,13 +776,13 @@ function updateHighlight(id) {
 }
 
 function updateSubtotal(id) {
-  const product = products.find(p => p.id === id);  if(product) {
+  const product = products.find(p => p.id === id);
+  if(product) {
     const subtotal = product.price * product.quantity;
     const el = document.getElementById('subtotal-' + id);
     if(el) el.textContent = formatMoney(subtotal);
   }
 }
-
 function triggerImageUpload(id) {
   currentUploadId = id;
   document.getElementById('imageUpload').click();
@@ -831,13 +825,13 @@ function render() {
   grid.innerHTML = products.map(p => {
     const subtotal = p.price * p.quantity;
     const completed = isCompleted(p);
-    const imageContent = p.image       ? `<img src="${p.image}" alt="${p.name}"><span class="upload-icon">📷</span>`
+    const imageContent = p.image 
+      ? `<img src="${p.image}" alt="${p.name}"><span class="upload-icon">📷</span>`
       : `${p.emoji}<span class="upload-icon">📷</span>`;
     return `
       <div class="product-card ${completed ? 'completed' : ''}" id="card-${p.id}">
         <button class="delete-btn-small" onclick="deleteProduct(${p.id})">✕</button>
-        <div class="product-header">
-          <div class="product-image-small" onclick="triggerImageUpload(${p.id})">${imageContent}</div>
+        <div class="product-header">          <div class="product-image-small" onclick="triggerImageUpload(${p.id})">${imageContent}</div>
           <input type="text" class="product-name ${completed ? 'highlighted' : ''}" id="name-${p.id}" value="${p.name}" 
                  onchange="updateProduct(${p.id}, 'name', this.value)" placeholder="Nome do produto">
         </div>
@@ -880,12 +874,12 @@ function clearPrices() {
 }
 
 function clearNames() {
-  if(confirm('Limpar todos os nomes?')) { products.forEach(p => p.name = ''); render(); toggleMenu(); }}
+  if(confirm('Limpar todos os nomes?')) { products.forEach(p => p.name = ''); render(); toggleMenu(); }
+}
 
 function clearQuantities() {
   if(confirm('Limpar todas as quantidades?')) { products.forEach(p => p.quantity = 1); render(); toggleMenu(); }
 }
-
 function loadSample() {
   if(products.length > 0 && !confirm('Adicionar produtos de exemplo?')) return;
   const samples = [
@@ -899,7 +893,7 @@ function loadSample() {
     { name: 'Ovos (dúzia)', price: 14.90, quantity: 1, emoji: '🥚' },
     { name: 'Açúcar 1kg', price: 4.99, quantity: 1, emoji: '🍬' },
     { name: 'Óleo 900ml', price: 7.50, quantity: 2, emoji: '🫙' },
-    { name: 'Macarrão', price: 3.99, quantity: 3, emoji: '' },
+    { name: 'Macarrão', price: 3.99, quantity: 3, emoji: '🍝' },
     { name: 'Molho Tomate', price: 2.99, quantity: 2, emoji: '🥫' }
   ];
   samples.forEach(s => addProduct(s));
@@ -909,7 +903,7 @@ function loadSample() {
 function buildCaptureHTML() {
   const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
   const totalItems = products.reduce((sum, p) => sum + p.quantity, 0);
-  let html = `<div class="cap-header"> ${currentListName}</div>`;
+  let html = `<div class="cap-header">🛒 ${currentListName}</div>`;
   html += `<div class="cap-row-header">
     <span style="flex:1;">Produto</span>
     <span style="width:50px;text-align:center;">Qtd</span>
@@ -929,17 +923,18 @@ function buildCaptureHTML() {
   html += `<div class="cap-footer">Mercado Fácil • ${new Date().toLocaleString('pt-BR')}</div>`;
   return html;
 }
+
 async function getCaptureCanvas() {
   const area = document.getElementById('captureArea');
   area.innerHTML = buildCaptureHTML();
   
   await new Promise(r => setTimeout(r, 100));
-  
-  const canvas = await html2canvas(area, { 
+    const canvas = await html2canvas(area, { 
     scale: 2, 
     backgroundColor: '#ffffff',
     useCORS: true,
-    logging: false
+    logging: false,
+    allowTaint: true
   });
   
   return canvas;
@@ -956,29 +951,64 @@ function closeSaveAsModal() {
   document.getElementById('saveAsModal').classList.remove('active'); 
 }
 
+// SOLUÇÃO PARA MOBILE - Download compatível
 async function saveAsImage() {
   closeSaveAsModal();
-  const canvas = await getCaptureCanvas();
-  const link = document.createElement('a');
-  link.download = `${currentListName.replace(/\s+/g, '_')}.png`;
-  link.href = canvas.toDataURL('image/png');
-  link.click();
+  try {
+    const canvas = await getCaptureCanvas();
+    const dataURL = canvas.toDataURL('image/png');
+    
+    // Método compatível com iOS e Android
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = `${currentListName.replace(/\s+/g, '_')}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Fallback para iOS
+    setTimeout(() => {
+      window.open(dataURL, '_blank');
+    }, 100);
+    
+  } catch(e) {
+    alert('Erro ao salvar imagem');
+  }
 }
 
 async function saveAsPDF() {
   closeSaveAsModal();
-  const canvas = await getCaptureCanvas();
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const imgData = canvas.toDataURL('image/png');
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
-  pdf.save(`${currentListName.replace(/\s+/g, '_')}.pdf`);
+  try {    const canvas = await getCaptureCanvas();
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgData = canvas.toDataURL('image/png');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
+    
+    // Download compatível com mobile
+    const pdfBlob = pdf.output('blob');
+    const pdfURL = URL.createObjectURL(pdfBlob);
+    
+    const link = document.createElement('a');
+    link.href = pdfURL;
+    link.download = `${currentListName.replace(/\s+/g, '_')}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setTimeout(() => {
+      URL.revokeObjectURL(pdfURL);
+    }, 100);
+    
+  } catch(e) {
+    alert('Erro ao salvar PDF');
+  }
 }
 
 function shareList() { 
-  toggleMenu();   setTimeout(() => {
+  toggleMenu(); 
+  setTimeout(() => {
     document.getElementById('shareModal').classList.add('active');
   }, 300);
 }
@@ -987,58 +1017,123 @@ function closeShareModal() {
   document.getElementById('shareModal').classList.remove('active'); 
 }
 
+// SOLUÇÃO PARA MOBILE - Compartilhamento compatível
 async function shareAsImage() {
   closeShareModal();
-  const canvas = await getCaptureCanvas();
-  canvas.toBlob((blob) => {
-    const file = new File([blob], `${currentListName}.png`, { type: 'image/png' });
-    if(navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-      navigator.share({ files: [file], title: currentListName, text: 'Minha lista de compras' });
-    } else {
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${currentListName}.png`;
-      link.click();
-      URL.revokeObjectURL(url);
+  try {
+    const canvas = await getCaptureCanvas();
+    const dataURL = canvas.toDataURL('image/png');
+    
+    // Converter para blob
+    const response = await fetch(dataURL);
+    const blob = await response.blob();
+    const file = new File([blob], `${currentListName}.png`, { type: 'image/png' });    
+    // Tentar Web Share API (Android)
+    if(navigator.share && navigator.canShare) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: currentListName,
+          text: 'Minha lista de compras'
+        });
+        return;
+      } catch(e) {
+        // Se falhar, continua para o download
+      }
     }
-  });
+    
+    // Fallback: download direto
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = `${currentListName}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+  } catch(e) {
+    alert('Erro ao compartilhar');
+  }
 }
 
 async function shareAsPDF() {
   closeShareModal();
-  const canvas = await getCaptureCanvas();
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const imgData = canvas.toDataURL('image/png');
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-  pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
-  
-  const blob = pdf.output('blob');
-  const file = new File([blob], `${currentListName}.pdf`, { type: 'application/pdf' });
-  
-  if(navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-    navigator.share({ files: [file], title: currentListName, text: 'Minha lista de compras' });
-  } else {
-    pdf.save(`${currentListName}.pdf`);
+  try {
+    const canvas = await getCaptureCanvas();
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgData = canvas.toDataURL('image/png');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
+    
+    const pdfBlob = pdf.output('blob');
+    const file = new File([pdfBlob], `${currentListName}.pdf`, { type: 'application/pdf' });
+    
+    // Tentar Web Share API
+    if(navigator.share && navigator.canShare) {
+      try {
+        await navigator.share({
+          files: [file],
+          title: currentListName,
+          text: 'Minha lista de compras'
+        });        return;
+      } catch(e) {
+        // Se falhar, continua para o download
+      }
+    }
+    
+    // Fallback: download direto
+    const pdfURL = URL.createObjectURL(pdfBlob);
+    const link = document.createElement('a');
+    link.href = pdfURL;
+    link.download = `${currentListName}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(pdfURL);
+    
+  } catch(e) {
+    alert('Erro ao compartilhar');
   }
 }
 
 function shareAsText() {
   closeShareModal();
-  const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);  let text = ` ${currentListName}\n\n`;
+  const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
+  let text = ` ${currentListName}\n\n`;
   products.forEach(p => {
     const sub = p.price * p.quantity;
     text += `${p.emoji} ${p.name || 'Sem nome'} - ${p.quantity}un x ${formatMoney(p.price)} = ${formatMoney(sub)}\n`;
   });
   text += `\n💰 Total: ${formatMoney(totalValue)}`;
   
-  if(navigator.share) {
-    navigator.share({ title: currentListName, text: text });
+  // Copiar para área de transferência
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('📋 Lista copiada! Cole no WhatsApp ou outro app.');
+    }).catch(() => {
+      fallbackCopy(text);
+    });
   } else {
-    navigator.clipboard.writeText(text);
+    fallbackCopy(text);
   }
+}
+
+function fallbackCopy(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-9999px';
+  document.body.appendChild(textArea);
+  textArea.select();  
+  try {
+    document.execCommand('copy');
+    alert('📋 Lista copiada! Cole no WhatsApp ou outro app.');
+  } catch(err) {
+    alert('Erro ao copiar');
+  }
+  
+  document.body.removeChild(textArea);
 }
 
 setInterval(() => { 
