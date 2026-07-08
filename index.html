@@ -6,8 +6,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>Mercado Fácil</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
 
@@ -47,9 +45,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 3px 10px rgba(102,126,234,0.4);  -webkit-appearance: none;
+  box-shadow: 0 3px 10px rgba(102,126,234,0.4);
+  -webkit-appearance: none;
 }
-
 .menu-btn:active { transform: scale(0.95); }
 
 .menu-overlay {
@@ -96,9 +94,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;  font-size: 0.9em;
-  width: 100%;
-  text-align: left;
+  font-weight: bold;
+  font-size: 0.9em;
+  width: 100%;  text-align: left;
   transition: all 0.2s;
   -webkit-appearance: none;
 }
@@ -145,9 +143,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   position: relative;
   padding: 6px 8px;
 }
+
 .product-card.completed {
-  background: linear-gradient(135deg, #e8f5e9, #fff);
-  border-left: 3px solid #4caf50;
+  background: linear-gradient(135deg, #e8f5e9, #fff);  border-left: 3px solid #4caf50;
 }
 
 .delete-btn-small {
@@ -194,9 +192,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   position: relative;
   border: 1px solid #e0e0e0;
 }
+
 .product-image-small img {
-  width: 100%;
-  height: 100%;
+  width: 100%;  height: 100%;
   object-fit: cover;
 }
 
@@ -243,9 +241,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   gap: 4px;
 }
 
-.price-input {  width: 100%;
-  padding: 5px 8px;
-  border: 1.5px solid #ddd;
+.price-input {
+  width: 100%;
+  padding: 5px 8px;  border: 1.5px solid #ddd;
   border-radius: 6px;
   font-size: 0.8em;
 }
@@ -293,8 +291,8 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   font-size: 0.85em;
   font-weight: bold;
 }
-.unit-label {
-  font-size: 0.7em;
+
+.unit-label {  font-size: 0.7em;
   color: #666;
   margin-left: 2px;
 }
@@ -341,9 +339,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   padding: 6px 12px;
-  border-radius: 8px;  min-width: 80px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(102,126,234,0.3);
+  border-radius: 8px;
+  min-width: 80px;
+  text-align: center;  box-shadow: 0 2px 8px rgba(102,126,234,0.3);
 }
 
 .summary-box h3 { font-size: 0.65em; opacity: 0.9; margin-bottom: 1px; }
@@ -390,9 +388,9 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   text-align: center;
 }
 
-.modal-list-item {  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.modal-list-item {
+  display: flex;
+  align-items: center;  justify-content: space-between;
   padding: 10px 12px;
   margin-bottom: 6px;
   background: #f5f7fa;
@@ -436,71 +434,12 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   -webkit-appearance: none;
 }
 
-#captureArea {
-  position: fixed;
-  left: -9999px;
-  top: 0;  width: 360px;
-  background: white;
-  padding: 15px;
-  font-family: 'Segoe UI', sans-serif;
-  z-index: -1;
-}
-
-#captureArea .cap-header {
-  text-align: center;
-  color: #667eea;
-  font-size: 1.3em;
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #667eea;
-}
-
-#captureArea .cap-row-header {
-  display: flex;
-  font-weight: bold;
-  font-size: 0.8em;
-  color: #667eea;
-  padding: 4px 0;
-  border-bottom: 2px solid #667eea;
-}
-
-#captureArea .cap-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  border-bottom: 1px dashed #ddd;
-  font-size: 0.9em;
-}
-
-#captureArea .cap-item .cap-name { flex: 1; font-weight: bold; }
-#captureArea .cap-item .cap-qty { width: 50px; text-align: center; color: #666; }
-#captureArea .cap-item .cap-price { width: 70px; text-align: right; }
-#captureArea .cap-item .cap-sub { width: 80px; text-align: right; font-weight: bold; color: #11998e; }
-
-#captureArea .cap-total {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-top: 2px solid #667eea;
-  text-align: right;
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #667eea;
-}
-
-#captureArea .cap-footer {  text-align: center;
-  margin-top: 10px;
-  font-size: 0.7em;
-  color: #999;
-}
-
 @media (max-width: 600px) {
   header h1 { font-size: 0.9em; }
   .summary-box { min-width: 70px; padding: 5px 8px; }
   .summary-box .value { font-size: 0.95em; }
   .products-grid { grid-template-columns: 1fr; }
-}
-</style>
+}</style>
 </head>
 <body>
 <div class="container">
@@ -536,8 +475,8 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
   <button class="menu-item blue" onclick="loadSample()">📦 Carregar Exemplo</button>
   <button class="menu-item cyan" onclick="saveCurrentListManual()">💾 Salvar Lista</button>
   <button class="menu-item cyan" onclick="shareList()">📤 Compartilhar Lista</button>
-  <button class="menu-item pink" onclick="showSaveAs()">💾 Salvar Como...</button>
-  <button class="menu-item purple" onclick="clearPrices()"> Limpar Preços</button>  <button class="menu-item teal" onclick="clearNames()">️ Limpar Nomes</button>
+  <button class="menu-item purple" onclick="clearPrices()">💲 Limpar Preços</button>
+  <button class="menu-item teal" onclick="clearNames()">🏷️ Limpar Nomes</button>
   <button class="menu-item blue" onclick="clearQuantities()">🔢 Limpar Quantidades</button>
   <button class="menu-item red" onclick="clearAll()">🗑️ Limpar Tudo</button>
 </div>
@@ -549,35 +488,22 @@ header h1 { color: #667eea; font-size: 1em; flex: 1; }
     <button class="modal-close" onclick="closeListsModal()">Fechar</button>
   </div>
 </div>
-
-<div class="modal-overlay" id="saveAsModal">
-  <div class="modal">
-    <h3>💾 Salvar Como</h3>
-    <button class="menu-item blue" onclick="saveAsImage()" style="width:100%;justify-content:center;">🖼️ Salvar como Imagem (PNG)</button>
-    <button class="menu-item red" onclick="saveAsPDF()" style="width:100%;justify-content:center;">📄 Salvar como PDF</button>
-    <button class="modal-close" onclick="closeSaveAsModal()">Cancelar</button>
-  </div>
-</div>
-
 <div class="modal-overlay" id="shareModal">
   <div class="modal">
     <h3>📤 Compartilhar Lista</h3>
-    <button class="menu-item blue" onclick="shareAsImage()" style="width:100%;justify-content:center;">️ Compartilhar como Imagem</button>
-    <button class="menu-item red" onclick="shareAsPDF()" style="width:100%;justify-content:center;">📄 Compartilhar como PDF</button>
     <button class="menu-item green" onclick="shareAsText()" style="width:100%;justify-content:center;">📝 Compartilhar como Texto</button>
     <button class="modal-close" onclick="closeShareModal()">Cancelar</button>
   </div>
 </div>
 
 <input type="file" id="imageUpload" accept="image/*" style="display:none">
-<div id="captureArea"></div>
 
 <script>
 let products = [];
 let currentUploadId = null;
 let currentListName = 'Lista de Compras';
 
-const emojis = ['🍎','🍌','','🍞','🧀','🥩','🥚','🍅','🥕','🍚','🧃','🍫','🧻','🧼','☕','🍝','🥫','🍺','🍇','🥦','🫘','🍗','🐟','🧅','🥬','🍊','🍋','🍑','🥑','🌽'];
+const emojis = ['🍎','🍌','🥛','🍞','🧀','🥩','🥚','🍅','🥕','🍚','🧃','🍫','🧻','🧼','☕','🍝','','🍺','','🥦','','🍗','','🧅','','🍊','','🍑','','🌽'];
 
 function toggleMenu() {
   document.getElementById('menuOverlay').classList.toggle('active');
@@ -587,6 +513,7 @@ function toggleMenu() {
 function getAllLists() {
   try { return JSON.parse(localStorage.getItem('marketLists') || '{}'); } catch { return {}; }
 }
+
 function saveAllLists(lists) { localStorage.setItem('marketLists', JSON.stringify(lists)); }
 
 function saveCurrentList() {
@@ -610,8 +537,7 @@ function createNewList() {
     products = [];
     document.getElementById('listTitle').textContent = '🛒 ' + currentListName;
     render();
-    toggleMenu();
-  }
+    toggleMenu();  }
 }
 
 function showLists() {
@@ -635,7 +561,8 @@ function showLists() {
       </div>
     `).join('');
   }
-  document.getElementById('listsModal').classList.add('active');}
+  document.getElementById('listsModal').classList.add('active');
+}
 
 function closeListsModal() { document.getElementById('listsModal').classList.remove('active'); }
 
@@ -659,8 +586,7 @@ function renameList(name) {
     delete lists[name];
     saveAllLists(lists);
     if(currentListName === name) {
-      currentListName = newName.trim();
-      document.getElementById('listTitle').textContent = '🛒 ' + currentListName;
+      currentListName = newName.trim();      document.getElementById('listTitle').textContent = '🛒 ' + currentListName;
     }
     showLists();
   }
@@ -684,7 +610,8 @@ function deleteList(name) {
 function editCurrentList() {
   const newName = prompt('Editar nome da lista:', currentListName);
   if(newName && newName.trim()) {
-    const lists = getAllLists();    if(lists[currentListName]) {
+    const lists = getAllLists();
+    if(lists[currentListName]) {
       lists[newName.trim()] = lists[currentListName];
       delete lists[currentListName];
       saveAllLists(lists);
@@ -702,14 +629,13 @@ function deleteCurrentList() {
     saveAllLists(lists);
     products = [];
     currentListName = 'Lista de Compras';
-    document.getElementById('listTitle').textContent = ' Mercado Fácil';
+    document.getElementById('listTitle').textContent = '🛒 Mercado Fácil';
     render();
     toggleMenu();
   }
 }
 
-function addProduct(data = {}) {
-  const product = {
+function addProduct(data = {}) {  const product = {
     id: Date.now() + Math.random(),
     name: data.name !== undefined ? data.name : '',
     price: data.price !== undefined ? data.price : 0,
@@ -734,6 +660,7 @@ function addProductAfter(id) {
   products.splice(index + 1, 0, newProduct);
   render();
 }
+
 function deleteProduct(id) {
   products = products.filter(p => p.id !== id);
   render();
@@ -757,7 +684,6 @@ function updateProduct(id, field, value) {
 function isCompleted(p) {
   return p.name && p.name.trim() !== '' && p.price > 0 && p.quantity > 0;
 }
-
 function updateHighlight(id) {
   const product = products.find(p => p.id === id);
   if(product) {
@@ -783,6 +709,7 @@ function updateSubtotal(id) {
     if(el) el.textContent = formatMoney(subtotal);
   }
 }
+
 function triggerImageUpload(id) {
   currentUploadId = id;
   document.getElementById('imageUpload').click();
@@ -807,7 +734,6 @@ document.getElementById('imageUpload').addEventListener('change', function(e) {
 function formatMoney(value) {
   return 'R$ ' + value.toFixed(2).replace('.', ',');
 }
-
 function updateSummary() {
   const totalItems = products.reduce((sum, p) => sum + p.quantity, 0);
   const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
@@ -831,7 +757,8 @@ function render() {
     return `
       <div class="product-card ${completed ? 'completed' : ''}" id="card-${p.id}">
         <button class="delete-btn-small" onclick="deleteProduct(${p.id})">✕</button>
-        <div class="product-header">          <div class="product-image-small" onclick="triggerImageUpload(${p.id})">${imageContent}</div>
+        <div class="product-header">
+          <div class="product-image-small" onclick="triggerImageUpload(${p.id})">${imageContent}</div>
           <input type="text" class="product-name ${completed ? 'highlighted' : ''}" id="name-${p.id}" value="${p.name}" 
                  onchange="updateProduct(${p.id}, 'name', this.value)" placeholder="Nome do produto">
         </div>
@@ -856,7 +783,6 @@ function render() {
   }).join('');
   updateSummary();
 }
-
 function changeQty(id, delta) {
   const product = products.find(p => p.id === id);
   if(product) {
@@ -880,13 +806,14 @@ function clearNames() {
 function clearQuantities() {
   if(confirm('Limpar todas as quantidades?')) { products.forEach(p => p.quantity = 1); render(); toggleMenu(); }
 }
+
 function loadSample() {
   if(products.length > 0 && !confirm('Adicionar produtos de exemplo?')) return;
   const samples = [
     { name: 'Arroz 5kg', price: 25.90, quantity: 1, emoji: '🍚' },
     { name: 'Feijão 1kg', price: 8.50, quantity: 2, emoji: '🫘' },
     { name: 'Leite Integral', price: 5.49, quantity: 6, emoji: '🥛' },
-    { name: 'Pão Francês', price: 12.00, quantity: 1, emoji: '' },
+    { name: 'Pão Francês', price: 12.00, quantity: 1, emoji: '🍞' },
     { name: 'Banana (kg)', price: 6.99, quantity: 2, emoji: '🍌' },
     { name: 'Café 500g', price: 18.90, quantity: 1, emoji: '☕' },
     { name: 'Queijo (kg)', price: 45.00, quantity: 0.5, emoji: '🧀' },
@@ -900,214 +827,26 @@ function loadSample() {
   toggleMenu();
 }
 
-function buildCaptureHTML() {
-  const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
-  const totalItems = products.reduce((sum, p) => sum + p.quantity, 0);
-  let html = `<div class="cap-header">🛒 ${currentListName}</div>`;
-  html += `<div class="cap-row-header">
-    <span style="flex:1;">Produto</span>
-    <span style="width:50px;text-align:center;">Qtd</span>
-    <span style="width:70px;text-align:right;">Preço</span>
-    <span style="width:80px;text-align:right;">Subtotal</span>
-  </div>`;
-  products.forEach(p => {
-    const sub = p.price * p.quantity;
-    html += `<div class="cap-item">
-      <span class="cap-name">${p.emoji} ${p.name || 'Sem nome'}</span>
-      <span class="cap-qty">${p.quantity}</span>
-      <span class="cap-price">${formatMoney(p.price)}</span>
-      <span class="cap-sub">${formatMoney(sub)}</span>
-    </div>`;
-  });
-  html += `<div class="cap-total">Total: ${formatMoney(totalValue)} (${totalItems} itens)</div>`;
-  html += `<div class="cap-footer">Mercado Fácil • ${new Date().toLocaleString('pt-BR')}</div>`;
-  return html;
-}
-
-async function getCaptureCanvas() {
-  const area = document.getElementById('captureArea');
-  area.innerHTML = buildCaptureHTML();
-  
-  await new Promise(r => setTimeout(r, 100));
-    const canvas = await html2canvas(area, { 
-    scale: 2, 
-    backgroundColor: '#ffffff',
-    useCORS: true,
-    logging: false,
-    allowTaint: true
-  });
-  
-  return canvas;
-}
-
-function showSaveAs() { 
-  toggleMenu(); 
-  setTimeout(() => {
-    document.getElementById('saveAsModal').classList.add('active');
-  }, 300);
-}
-
-function closeSaveAsModal() { 
-  document.getElementById('saveAsModal').classList.remove('active'); 
-}
-
-// SOLUÇÃO PARA MOBILE - Download compatível
-async function saveAsImage() {
-  closeSaveAsModal();
-  try {
-    const canvas = await getCaptureCanvas();
-    const dataURL = canvas.toDataURL('image/png');
-    
-    // Método compatível com iOS e Android
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = `${currentListName.replace(/\s+/g, '_')}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Fallback para iOS
-    setTimeout(() => {
-      window.open(dataURL, '_blank');
-    }, 100);
-    
-  } catch(e) {
-    alert('Erro ao salvar imagem');
-  }
-}
-
-async function saveAsPDF() {
-  closeSaveAsModal();
-  try {    const canvas = await getCaptureCanvas();
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgData = canvas.toDataURL('image/png');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-    pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
-    
-    // Download compatível com mobile
-    const pdfBlob = pdf.output('blob');
-    const pdfURL = URL.createObjectURL(pdfBlob);
-    
-    const link = document.createElement('a');
-    link.href = pdfURL;
-    link.download = `${currentListName.replace(/\s+/g, '_')}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    setTimeout(() => {
-      URL.revokeObjectURL(pdfURL);
-    }, 100);
-    
-  } catch(e) {
-    alert('Erro ao salvar PDF');
-  }
-}
-
 function shareList() { 
   toggleMenu(); 
   setTimeout(() => {
     document.getElementById('shareModal').classList.add('active');
-  }, 300);
-}
+  }, 300);}
 
 function closeShareModal() { 
   document.getElementById('shareModal').classList.remove('active'); 
 }
 
-// SOLUÇÃO PARA MOBILE - Compartilhamento compatível
-async function shareAsImage() {
-  closeShareModal();
-  try {
-    const canvas = await getCaptureCanvas();
-    const dataURL = canvas.toDataURL('image/png');
-    
-    // Converter para blob
-    const response = await fetch(dataURL);
-    const blob = await response.blob();
-    const file = new File([blob], `${currentListName}.png`, { type: 'image/png' });    
-    // Tentar Web Share API (Android)
-    if(navigator.share && navigator.canShare) {
-      try {
-        await navigator.share({
-          files: [file],
-          title: currentListName,
-          text: 'Minha lista de compras'
-        });
-        return;
-      } catch(e) {
-        // Se falhar, continua para o download
-      }
-    }
-    
-    // Fallback: download direto
-    const link = document.createElement('a');
-    link.href = dataURL;
-    link.download = `${currentListName}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-  } catch(e) {
-    alert('Erro ao compartilhar');
-  }
-}
-
-async function shareAsPDF() {
-  closeShareModal();
-  try {
-    const canvas = await getCaptureCanvas();
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const imgData = canvas.toDataURL('image/png');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-    pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
-    
-    const pdfBlob = pdf.output('blob');
-    const file = new File([pdfBlob], `${currentListName}.pdf`, { type: 'application/pdf' });
-    
-    // Tentar Web Share API
-    if(navigator.share && navigator.canShare) {
-      try {
-        await navigator.share({
-          files: [file],
-          title: currentListName,
-          text: 'Minha lista de compras'
-        });        return;
-      } catch(e) {
-        // Se falhar, continua para o download
-      }
-    }
-    
-    // Fallback: download direto
-    const pdfURL = URL.createObjectURL(pdfBlob);
-    const link = document.createElement('a');
-    link.href = pdfURL;
-    link.download = `${currentListName}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(pdfURL);
-    
-  } catch(e) {
-    alert('Erro ao compartilhar');
-  }
-}
-
 function shareAsText() {
   closeShareModal();
   const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0);
-  let text = ` ${currentListName}\n\n`;
+  let text = `🛒 ${currentListName}\n\n`;
   products.forEach(p => {
     const sub = p.price * p.quantity;
     text += `${p.emoji} ${p.name || 'Sem nome'} - ${p.quantity}un x ${formatMoney(p.price)} = ${formatMoney(sub)}\n`;
   });
   text += `\n💰 Total: ${formatMoney(totalValue)}`;
   
-  // Copiar para área de transferência
   if(navigator.clipboard) {
     navigator.clipboard.writeText(text).then(() => {
       alert('📋 Lista copiada! Cole no WhatsApp ou outro app.');
@@ -1125,7 +864,8 @@ function fallbackCopy(text) {
   textArea.style.position = 'fixed';
   textArea.style.left = '-9999px';
   document.body.appendChild(textArea);
-  textArea.select();  
+  textArea.select();
+  
   try {
     document.execCommand('copy');
     alert('📋 Lista copiada! Cole no WhatsApp ou outro app.');
@@ -1140,8 +880,7 @@ setInterval(() => {
   if(products.length > 0) saveCurrentList(); 
 }, 3000);
 
-const lastList = localStorage.getItem('lastListName');
-if(lastList) {
+const lastList = localStorage.getItem('lastListName');if(lastList) {
   const lists = getAllLists();
   if(lists[lastList]) {
     currentListName = lastList;
